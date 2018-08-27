@@ -1,0 +1,59 @@
+version: "3.6"
+services:
+
+  redis01:
+    container_name: redis01
+    build:
+      context: ./redis01
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - redis01-data:/data
+#    ports:
+#      - 6379:6379
+    networks:
+      - redis-network
+    restart: always
+    tty: true
+
+  redis02:
+    container_name: redis02
+    build:
+      context: ./redis02
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - redis02-data:/data
+#    ports:
+#      - 6379:6379
+    networks:
+      - redis-network
+    restart: always
+    tty: true
+
+  redis03:
+    container_name: redis03
+    build:
+      context: ./redis03
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - redis03-data:/data
+#    ports:
+#      - 6379:6379
+    networks:
+      - redis-network
+    restart: always
+    tty: true
+
+networks:
+  redis-network:
+    driver: bridge
+
+volumes:
+  redis01-data:
+    driver: local
+  redis02-data:
+    driver: local
+  redis03-data:
+    driver: local
